@@ -1,0 +1,50 @@
+Ich wohne in Berlin.;German
+Mein Lieblingsessen ist Pizza.;German
+Gestern habe ich einen Film gesehen.;German
+Der Himmel ist heute blau.;German
+Ich trinke gerne Kaffee.;German
+Meine Schwester arbeitet als Ärztin.;German
+Heute Abend gehe ich ins Kino.;German
+Das Buch, das ich lese, ist sehr interessant.;German
+Im Sommer fahre ich gerne ans Meer.;German
+Ich habe heute viel zu tun.;German
+Meine Eltern sind in den USA geboren.;German
+Ich höre gerne Musik beim Arbeiten.;German
+Das Museum hat viele interessante Ausstellungen.;German
+Meine Lieblingsfarbe ist Blau.;German
+Das Wetter in Deutschland ist oft wechselhaft.;German
+Meine beste Freundin studiert Jura.;German
+Ich spiele gerne Tennis.;German
+Die Universität ist in der Nähe meines Hauses.;German
+Ich lerne Deutsch seit drei Jahren.;German
+Gestern habe ich einen langen Spaziergang gemacht.;German
+Die Straßen in Berlin sind oft voll.;German
+Meine Großeltern kommen aus Polen.;German
+Der Flug nach New York dauert zehn Stunden.;German
+Ich habe gestern ein neues Auto gekauft.;German
+Im Winter fahre ich gerne Ski.;German
+Die Musik auf der Party war sehr laut.;German
+Mein Lieblingsfilm ist Forrest Gump.;German
+Ich arbeite als Programmierer.;German
+Die Stadt ist sehr belebt.;German
+Meine Katze schläft oft auf meinem Bett.;German
+Die Arbeitszeiten in meinem Job sind flexibel.;German
+Ich trage gerne Jeans und T-Shirt.;German
+Das Konzert gestern war großartig.;German
+Ich mag keine Spinatpizza.;German
+Meine Lieblingsserie ist Game of Thrones.;German
+Die Menschen in Deutschland sind sehr freundlich.;German
+Ich spiele gerne Videospiele in meiner Freizeit.;German
+Der Zug ist oft unpünktlich.;German
+Mein Lieblingsbuch ist Der kleine Prinz.;German
+Ich gehe gerne schwimmen im Sommer.;German
+Die Aussicht vom Berg ist atemberaubend.;German
+Meine Familie und ich machen oft Urlaub in Italien.;German
+Ich gehe gerne ins Fitnessstudio.;German
+Das Museum hat viele alte Kunstwerke.;German
+Meine Freunde und ich gehen gerne zusammen essen.;German
+Ich liebe es zu reisen und neue Orte zu entdecken.;German
+Ich trinke am liebsten Wasser.;German
+Das Festival war sehr gut organisiert.;German
+Ich spiele gerne Gitarre.;German
+Der Park in meiner Nähe ist sehr schön.;German
