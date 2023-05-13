@@ -32,15 +32,29 @@ public class KMeans {
         for(int i = 0; i < groupNumber; i++)
         {
             localCentroids[i] = groups.get(i).countCentroid();
+//            for(Group g : groups)
+//            {
+//                g.printGroup();
+//            }
         }
         while (iteration(localCentroids))
         {
+            for(Group g : groups)
+            {
+                g.printGroup();
+            }
+            System.out.println("--------------------------------------------");
             for(int i = 0; i < groupNumber; i++)
             {
                 localCentroids[i] = groups.get(i).countCentroid();
                 groups.get(i).clear();
             }
         }
+        for(Group g : groups)
+        {
+            g.printGroup();
+        }
+        System.out.println("--------------------------------------------");
         return groups;
     }
 
@@ -71,7 +85,6 @@ public class KMeans {
                 break;
             }
         }
-
         return hasChanged;
     }
     private static void randomFromList() throws SizesNotTheSameException {

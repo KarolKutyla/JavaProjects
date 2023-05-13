@@ -1,27 +1,36 @@
 package GameController;
 
 import java.util.HashMap;
+import java.util.Objects;
 
-public class Pawn {
-    public final static HashMap<Integer, Pawn> pawns = new HashMap();
-    private static int staticId=0;
+abstract public class Pawn implements Animated, Runnable{
+    private final static HashMap<String, Pawn> pawns = new HashMap<>();
+    static int staticId=0;
     public final int id = ++staticId;
-    private int speed = 1;
-    private int xPosition;
-    private int yPosition;
-    private Direction currentDirection;
-    private GameBoard gameBoard;
+    public final String name;
+    int speed = 1;
+    int xPosition;
+    int yPosition;
+    Direction currentDirection;
+    GameBoard gameBoard;
 
-    public Pawn(GameBoard board, int xPosition, int yPosition)
+    public Pawn(String name, GameBoard board, int xPosition, int yPosition)
     {
+        this.name = name;
         this.gameBoard = board;
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.currentDirection = Direction.none;
-        pawns.put(this.id, this);
+        board.board[yPosition][xPosition].add(this);
+        pawns.put(this.name, this);
     }
 
-    public boolean move(Direction direction)
+    public Pawn getByName(String str)
+    {
+        return pawns.get(str);
+    }
+
+    synchronized public boolean move(Direction direction)
     {
         if(canMove(direction)) {
             gameBoard.board[yPosition][xPosition].remove(this);
@@ -39,31 +48,40 @@ public class Pawn {
         else return false;
     }
 
-    private boolean canMove(Direction direction)
+    synchronized boolean canMove(Direction direction)
     {
         if(!gameBoard.board[(this.yPosition + direction.y + gameBoard.maxY)% gameBoard.maxY][(this.xPosition + direction.x + gameBoard.maxX)%gameBoard.maxX].isWall)
         {
-            System.out.println("can move");
             return true;
         }else {
-            System.out.println("can't move");
-            System.out.println(gameBoard);
+            //System.out.println(gameBoard);
             return false;
         }
     }
-
-
 
     public enum Direction
     {
         RIGHT(1,0), LEFT(-1,0), UP(0,-1), DOWN(0,1), none(0,0);
 
-        private int x;
-        private int y;
+        int x;
+        int y;
         private Direction(int x, int y)
         {
             this.x = x;
             this.y = y;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pawn pawn = (Pawn) o;
+        return name.equals(pawn.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

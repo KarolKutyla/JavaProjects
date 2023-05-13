@@ -53,4 +53,15 @@ public class Group {
         vectors = new LinkedList<>();
     }
 
+    public void printGroup()
+    {
+        double sum = 0;
+        for(Vector v : vectors) {
+            IrisVector irisVector = (IrisVector) v;
+            System.out.println("In this group: " + irisVector.name);
+            sum+=Vector.squareDistance(this.centroid, v);
+        }
+        System.out.printf("Suma kwadratów odległości to %f: \n\n", sum);
+    }
+
 }

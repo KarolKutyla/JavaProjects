@@ -44,4 +44,15 @@ public class Vector extends java.util.Vector<Double> {
             throw new SizesNotTheSameException();
         }
     }
+
+    static double squareDistance(Vector v, Vector centroid)
+    {
+        double sum = 0d;
+        int d = 0;
+        for(; d < centroid.size(); d++)
+        {
+            sum += Math.pow((centroid.get(d)-v.get(d)),2);
+        }
+        return sum/d;
+    }
 }

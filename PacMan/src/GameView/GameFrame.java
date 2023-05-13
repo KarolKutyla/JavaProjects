@@ -24,6 +24,7 @@ public class GameFrame extends JFrame {
     private JPanel panel;
     private GameBoard gameBoard;
     private Field[][] board;
+    private Pawn.Direction direction = Pawn.Direction.none;
 
     public GameFrame(Field[][] board, GameBoard gameBoard) {
         this.board = board;
@@ -51,7 +52,7 @@ public class GameFrame extends JFrame {
 
         panel = new JPanel() {
             @Override
-            protected void paintComponent(Graphics g) {
+            synchronized protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.setColor(Color.WHITE);
                 g.fillRect(0, 0, WIDTH, HEIGHT);
@@ -72,26 +73,26 @@ public class GameFrame extends JFrame {
             }
         };
 
+
         this.requestFocusInWindow();
         this.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println("się dzieje");
                 int keyCode = e.getKeyCode();
                 if(keyCode == KeyEvent.VK_LEFT)
                 {
-                    gameBoard.movePawn(Pawn.Direction.LEFT);
+                    gameBoard.setDirection(Pawn.Direction.LEFT);
                 }else if(keyCode == KeyEvent.VK_RIGHT)
                 {
-                    gameBoard.movePawn(Pawn.Direction.RIGHT);
+                    gameBoard.setDirection(Pawn.Direction.RIGHT);
                 }
                 else if(keyCode == KeyEvent.VK_UP)
                 {
-                    gameBoard.movePawn(Pawn.Direction.UP);
+                    gameBoard.setDirection(Pawn.Direction.UP);
                 }
                 else if(keyCode == KeyEvent.VK_DOWN)
                 {
-                    gameBoard.movePawn(Pawn.Direction.DOWN);
+                    gameBoard.setDirection(Pawn.Direction.DOWN);
                 }
             }
         });
@@ -113,6 +114,10 @@ public class GameFrame extends JFrame {
 
     public void refresh() {
         panel.repaint();
+    }
+
+    public Pawn.Direction getDirection() {
+        return direction;
     }
 }
 

@@ -1,5 +1,6 @@
+import Segments.DataSegment;
+
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 public class GraphicParser {
 
@@ -8,11 +9,6 @@ public class GraphicParser {
 
     public GraphicParser()
     {
-        File file = new File("aaa");
-        image = new BufferedImage(file);
-        for(int i = 0; i < segments.length; i++)
-        {
-            segments[i] = new DataSegment();
-        }
+
     }
 }
