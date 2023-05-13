@@ -1,0 +1,100 @@
+Ich wohne in Berlin.;German
+Mein Lieblingsessen ist Pizza.;German
+Gestern habe ich einen Film gesehen.;German
+Der Himmel ist heute blau.;German
+Ich trinke gerne Kaffee.;German
+Meine Schwester arbeitet als Ärztin.;German
+Heute Abend gehe ich ins Kino.;German
+Das Buch, das ich lese, ist sehr interessant.;German
+Im Sommer fahre ich gerne ans Meer.;German
+Ich habe heute viel zu tun.;German
+Meine Eltern sind in den USA geboren.;German
+Ich höre gerne Musik beim Arbeiten.;German
+Das Museum hat viele interessante Ausstellungen.;German
+Meine Lieblingsfarbe ist Blau.;German
+Das Wetter in Deutschland ist oft wechselhaft.;German
+Meine beste Freundin studiert Jura.;German
+Ich spiele gerne Tennis.;German
+Die Universität ist in der Nähe meines Hauses.;German
+Ich lerne Deutsch seit drei Jahren.;German
+Gestern habe ich einen langen Spaziergang gemacht.;German
+Die Straßen in Berlin sind oft voll.;German
+Meine Großeltern kommen aus Polen.;German
+Der Flug nach New York dauert zehn Stunden.;German
+Ich habe gestern ein neues Auto gekauft.;German
+Im Winter fahre ich gerne Ski.;German
+Die Musik auf der Party war sehr laut.;German
+Mein Lieblingsfilm ist Forrest Gump.;German
+Ich arbeite als Programmierer.;German
+Die Stadt ist sehr belebt.;German
+Meine Katze schläft oft auf meinem Bett.;German
+Die Arbeitszeiten in meinem Job sind flexibel.;German
+Ich trage gerne Jeans und T-Shirt.;German
+Das Konzert gestern war großartig.;German
+Ich mag keine Spinatpizza.;German
+Meine Lieblingsserie ist Game of Thrones.;German
+Die Menschen in Deutschland sind sehr freundlich.;German
+Ich spiele gerne Videospiele in meiner Freizeit.;German
+Der Zug ist oft unpünktlich.;German
+Mein Lieblingsbuch ist Der kleine Prinz.;German
+Ich gehe gerne schwimmen im Sommer.;German
+Die Aussicht vom Berg ist atemberaubend.;German
+Meine Familie und ich machen oft Urlaub in Italien.;German
+Ich gehe gerne ins Fitnessstudio.;German
+Das Museum hat viele alte Kunstwerke.;German
+Meine Freunde und ich gehen gerne zusammen essen.;German
+Ich liebe es zu reisen und neue Orte zu entdecken.;German
+Ich trinke am liebsten Wasser.;German
+Das Festival war sehr gut organisiert.;German
+Ich spiele gerne Gitarre.;German
+Der Park in meiner Nähe ist sehr schön.;German
+J'aime beaucoup écouter de la musique.;French
+Mon sport préféré est le tennis.;French
+Hier, j'ai regardé un film intéressant.;French
+Il fait beau aujourd'hui.;French
+J'aime boire du café le matin.;French
+Ma sœur travaille comme professeur.;French
+Ce soir, je vais au théâtre.;French
+Le livre que je lis est très intéressant.;French
+En été, j'aime aller à la plage.;French
+J'ai beaucoup de travail à faire aujourd'hui.;French
+Mes parents sont nés en France.;French
+J'aime écouter de la musique en travaillant.;French
+Le musée a de très belles expositions.;French
+Ma couleur préférée est le rouge.;French
+Le temps en France est souvent changeant.;French
+Mon ami étudie la médecine.;French
+Je joue souvent au football.;French
+L'université est proche de chez moi.;French
+J'apprends le français depuis deux ans.;French
+Hier, j'ai fait une longue promenade.;French
+Les rues de Paris sont souvent bondées.;French
+Mes grands-parents viennent d'Espagne.;French
+Le vol pour New York dure neuf heures.;French
+J'ai acheté une nouvelle voiture hier.;French
+En hiver, je fais du ski.;French
+La musique à la fête était trop forte.;French
+Mon film préféré est La La Land.;French
+Je travaille comme ingénieur.;French
+La ville est très animée.;French
+Mon chat dort souvent sur mon lit.;French
+Les horaires de travail dans mon travail sont flexibles.;French
+J'aime porter des jeans et un t-shirt.;French
+Le concert hier soir était incroyable.;French
+Je n'aime pas la pizza aux épinards.;French
+Ma série préférée est Breaking Bad.;French
+Les gens en France sont très sympathiques.;French
+J'aime jouer aux jeux vidéo pendant mon temps libre.;French
+Le train est souvent en retard.;French
+Mon livre préféré est Le Petit Prince.;French
+J'aime nager en été.;French
+La vue depuis la montagne est à couper le souffle.;French
+Ma famille et moi aimons beaucoup aller en vacances en Grèce.;French
+J'aime aller à la salle de sport.;French
+Le musée a de très belles œuvres d'art moderne.;French
+Mes amis et moi aimons beaucoup aller manger ensemble.;French
+J'adore voyager et découvrir de nouveaux endroits.;French
+Je préfère boire de l'eau.;French
+Le festival était très bien organisé.;French
+J'aime jouer de la guitare.;French
+Le parc près de chez moi est très agréable.;French

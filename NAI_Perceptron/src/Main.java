@@ -1,45 +1,39 @@
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Vector;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Perceptron perceptron = new Perceptron(Double.parseDouble(args[0]), args[1], args[2]);
+        try {
+            List<LanguagePerceptron> lp = InputController.init();
+            OutputController controller = new OutputController();
+            for(LanguagePerceptron p : lp) {
+                System.out.println(p.name);
+                controller.addPerceptron(p);
+            }
+            new InputController();
+//            LanguagePerceptron germanPerceptron = new LanguagePerceptron("German");
+//            LanguagePerceptron frenchPerceptron = new LanguagePerceptron("French");
+//            LanguagePerceptron englishPerceptron = new LanguagePerceptron("English");
+//            LanguagePerceptron polishPerceptron = new LanguagePerceptron("Polish");
 
-//        ArrayList<String> arr1 = new ArrayList<>();
-//        ArrayList<String> arr2 = new ArrayList<>();
-//        try(BufferedReader br = new BufferedReader(new FileReader("src/Data/Current_training.txt"))) {
-//            String str;
-//
-//            int i = 0;
-//            while ((str = br.readLine()) != null)
-//            {
-//                if(i <35)
-//                    arr1.add(str);
-//                else arr2.add(str);
-//                i++;
-//            }
-//        }catch (IOException e)
-//        {
-//        e.printStackTrace();
-//        }
-//        try(BufferedWriter bw = new BufferedWriter(new FileWriter("src/Data/Mixed_training.txt"))) {
-//
-//
-//            for(int i = 0; i < 70; i++)
-//            {
-//                if(i%2 ==0)
-//                bw.write(arr1.get(i/2)+"\n");
-//                else
-//                    bw.write(arr2.get(i/2)+"\n");
-//            }
-//
-//        }catch (IOException e)
-//        {
-//            e.printStackTrace();
-//        }
-//    }
+//            controller.addPerceptron(germanPerceptron);
+//            controller.addPerceptron(frenchPerceptron);
+//            controller.addPerceptron(englishPerceptron);
+//            controller.addPerceptron(polishPerceptron);
+            for(int i = 0; i < 5; i++)
+            {
+                controller.learn();
+            }
+            controller.test();
+            //System.out.println(controller.whichCountry("Der Park in meiner Nähe ist sehr schön."));
+            //System.out.println(controller.whichCountry("Le parc près de chez moi est très agréable."));
+            new MyWindow(controller);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
     }
 }
