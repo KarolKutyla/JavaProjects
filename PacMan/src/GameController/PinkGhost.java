@@ -72,7 +72,7 @@ public class PinkGhost extends Ghost{
             }
             moveCounter = 0;
 
-            if (ghostsStarted) {
+
                 switch ((int) (Math.random() * 4)) {
                     case 0:
                         currentDirection = Pawn.Direction.UP;
@@ -89,9 +89,7 @@ public class PinkGhost extends Ghost{
                 }
                 mode++;
                 return move(currentDirection);
-            }
-            mode++;
-            return true;
+
         }else if(mode < 40)
         {
             if(this.yPosition > gameBoard.pacman.yPosition && canMove(Direction.UP))
@@ -117,8 +115,7 @@ public class PinkGhost extends Ghost{
                 mode++;
                 return move(Direction.none);
             }
-        }else
-        {
+        }else {
             mode = 0;
             return false;
         }

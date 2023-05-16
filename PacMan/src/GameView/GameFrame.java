@@ -14,31 +14,18 @@ import GameController.GameBoard.Field;
 import GameController.Pawn;
 
 public class GameFrame extends JFrame {
-    private HashMap<String, BufferedImage> images = new HashMap<>();
-    private final int WIDTH = 1000;
-    private final int HEIGHT = 1000;
-    private final int SQUARE_SIZE = 10; // Rozmiar pojedynczego kwadratu w pikselach
-
-    private final String GRAPHIC_PATH = "Resources/Graphics/";
-
-    private JPanel panel;
-    private GameBoard gameBoard;
-    private Field[][] board;
-    private Pawn.Direction direction = Pawn.Direction.none;
-
-    public GameFrame(Field[][] board, GameBoard gameBoard) {
-        this.board = board;
-        this.gameBoard = gameBoard;
-
+    private static int WIDTH;
+    private static int HEIGHT;
+    private final static String GRAPHIC_PATH = "Resources/Graphics/Animations/";
+    private static HashMap<String, BufferedImage> images = new HashMap<>();
+    private JLabel scoreLabel;
+    private ShowUpgradesPanel speedPanel;
+    private ShowUpgradesPanel hPPanel;
+    private ShowUpgradesPanel voidWalkPanel;
+    private ShowUpgradesPanel teleportPanel;
+    private ShowUpgradesPanel berserkPanel;
+    static {
         try {
-//            new Thread(()->SwingUtilities.invokeLater(new Runnable() {
-//                public void run() {
-//                    while (true) {
-//                        repaint();
-//                    }
-//                }
-//            })).start();
-
             File dir = new File(GRAPHIC_PATH);
             for(File f : dir.listFiles())
             {
@@ -49,33 +36,24 @@ public class GameFrame extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+            HEIGHT = toolkit.getScreenSize().height;
+            WIDTH = toolkit.getScreenSize().width;
+    }
 
-        panel = new JPanel() {
-            @Override
-            synchronized protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.setColor(Color.WHITE);
-                g.fillRect(0, 0, WIDTH, HEIGHT);
+    private int SQUARE_SIZE; // Rozmiar pojedynczego kwadratu w pikselach
+    private GameTable gameTable;
+    private GameBoard gameBoard;
+    private Field[][] board;
+    private Pawn.Direction direction = Pawn.Direction.none;
 
-                for (int i = 0; i < board.length; i++) {
-                    for (int j = 0; j < board[i].length; j++) {
-                        int x = j * SQUARE_SIZE;
-                        int y = i * SQUARE_SIZE;
-
-                        g.drawImage(images.get(board[i][j].getImage()), x, y, SQUARE_SIZE, SQUARE_SIZE, null);
-//                        if (board[i][j] == 0) {
-//                            g.drawImage(emptySquareImg, x, y, SQUARE_SIZE, SQUARE_SIZE, null);
-//                        } else {
-//                            g.drawImage(filledSquareImg, x, y, SQUARE_SIZE, SQUARE_SIZE, null);
-//                        }
-                    }
-                }
-            }
-        };
-
-
-        this.requestFocusInWindow();
-        this.addKeyListener(new KeyAdapter() {
+    public GameFrame(Field[][] board, GameBoard gameBoard) {
+        this.board = board;
+        this.gameBoard = gameBoard;
+        SQUARE_SIZE = HEIGHT/board.length;
+        gameTable = new GameTable(board, SQUARE_SIZE, this, gameBoard);
+        gameTable.requestFocusInWindow();
+        gameTable.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 int keyCode = e.getKeyCode();
@@ -88,23 +66,69 @@ public class GameFrame extends JFrame {
                 }
                 else if(keyCode == KeyEvent.VK_UP)
                 {
-                    gameBoard.setDirection(Pawn.Direction.UP);
+                    gameBoard.setDirection(Pawn.Direction.UP);;
                 }
                 else if(keyCode == KeyEvent.VK_DOWN)
                 {
                     gameBoard.setDirection(Pawn.Direction.DOWN);
+                }else if(keyCode == KeyEvent.VK_T)
+                {
+                    gameBoard.pacman.saveTeleportCoordinate();
+                }else if(keyCode == KeyEvent.VK_SPACE)
+                {
+                    gameBoard.pacman.teleport();
                 }
             }
-        });
 
-        setContentPane(panel);
-        setSize(WIDTH, HEIGHT);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        });
+        JPanel screenPanel = new JPanel();
+        screenPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        screenPanel.add(gameTable, gbc);
+        gbc.gridx = 1;
+        gbc.weightx = 100.0;
+        gbc.weighty = 0;
+        JPanel additionalPanel = new JPanel();
+        additionalPanel.setLayout(new GridLayout(6,1));
+        scoreLabel = new JLabel(gameBoard.getScore());
+        scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        speedPanel = new ShowUpgradesPanel(10,gameBoard.pacman.speedValue,"speed_icon");
+        hPPanel = new ShowUpgradesPanel(3,gameBoard.pacman.HP,"HP_icon");
+        voidWalkPanel = new ShowUpgradesPanel(5,gameBoard.pacman.voidWalk,"voidWalk_icon");
+        teleportPanel = new ShowUpgradesPanel(1,0,"teleport_icon");
+        berserkPanel = new ShowUpgradesPanel(20,0,"berserk_icon");
+        additionalPanel.add(scoreLabel);
+        additionalPanel.add(speedPanel);
+        additionalPanel.add(hPPanel);
+        additionalPanel.add(voidWalkPanel);
+        additionalPanel.setBackground(Color.YELLOW);
+        screenPanel.add(additionalPanel, gbc);
+        {
+
+        }
+        setContentPane(screenPanel);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        if(gd.isFullScreenSupported())
+        {
+            gd.setFullScreenWindow(this);
+        } else
+        {
+            setSize(WIDTH, HEIGHT);
+            setVisible(true);
+        }
+
         new Thread(() -> {while (true) {
             refresh();
             try {
-                Thread.sleep(100);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -113,7 +137,19 @@ public class GameFrame extends JFrame {
     }
 
     public void refresh() {
-        panel.repaint();
+        scoreLabel.setText(gameBoard.getScore());
+        speedPanel.checkGraphics(gameBoard.pacman.speedValue);
+        hPPanel.checkGraphics(gameBoard.pacman.HP);
+        voidWalkPanel.checkGraphics(gameBoard.pacman.voidWalk);
+        if(gameBoard.pacman.teleport) {
+            teleportPanel.checkGraphics(1);
+        }
+        else
+        {
+                teleportPanel.checkGraphics(0);
+        }
+        berserkPanel.checkGraphics(gameBoard.pacman.berserkCounter/30);
+        gameTable.repaint();
     }
 
     public Pawn.Direction getDirection() {

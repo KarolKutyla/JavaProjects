@@ -4,15 +4,15 @@ import java.util.HashMap;
 import java.util.Objects;
 
 abstract public class Pawn implements Animated, Runnable{
-    private final static HashMap<String, Pawn> pawns = new HashMap<>();
     static int staticId=0;
     public final int id = ++staticId;
     public final String name;
-    int speed = 1;
     int xPosition;
     int yPosition;
     Direction currentDirection;
     GameBoard gameBoard;
+    protected int speedCounter = 0;
+    protected int speedCounterValue = 20;
 
     public Pawn(String name, GameBoard board, int xPosition, int yPosition)
     {
@@ -22,30 +22,38 @@ abstract public class Pawn implements Animated, Runnable{
         this.yPosition = yPosition;
         this.currentDirection = Direction.none;
         board.board[yPosition][xPosition].add(this);
-        pawns.put(this.name, this);
-    }
-
-    public Pawn getByName(String str)
-    {
-        return pawns.get(str);
     }
 
     synchronized public boolean move(Direction direction)
     {
-        if(canMove(direction)) {
-            gameBoard.board[yPosition][xPosition].remove(this);
-            switch (direction) {
-                case RIGHT, LEFT:
-                    xPosition = (xPosition + direction.x*speed + gameBoard.maxX) % gameBoard.maxX;
-                    break;
-                case UP, DOWN:
-                    yPosition = (yPosition + direction.y*speed + gameBoard.maxY) % gameBoard.maxY;
-                    break;
+        if(speedCounter >= speedCounterValue)
+        {
+            speedCounter = 0;
+            if(canMove(direction)) {
+
+                gameBoard.board[yPosition][xPosition].remove(this);
+                switch (direction) {
+                    case RIGHT, LEFT:
+                        xPosition = (xPosition + direction.x + gameBoard.maxX) % gameBoard.maxX;
+                        break;
+                    case UP, DOWN:
+                        yPosition = (yPosition + direction.y + gameBoard.maxY) % gameBoard.maxY;
+                        break;
+                }
+                gameBoard.board[yPosition][xPosition].add(this);
+
+                return true;
             }
-            gameBoard.board[yPosition][xPosition].add(this);
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            speedCounter++;
             return true;
         }
-        else return false;
     }
 
     synchronized boolean canMove(Direction direction)
